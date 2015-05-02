@@ -20,4 +20,7 @@ class Task
   belongs_to :user
   belongs_to :project, autosave: true
 
+  def self.create_task_for_api(task_hash)
+    
+  end
 end

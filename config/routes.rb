@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
         # Dashoard routes
         get  "dashboard/" => "dashboard#index"
+
+        # Project routes
+        get   "projects/:id" => "projects#show"
+        post  "projects/create" => "projects#create"
       end
     end
   end
