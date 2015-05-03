@@ -22,6 +22,11 @@ u3 = User.create(
   phone_number: "19146181757"
 )
 
+u4 = User.create(
+  name: "Danny",
+  phone_number: "16462697113"
+)
+
 p = Project.create(
   title: "Disrupt Project"
 )
@@ -30,21 +35,21 @@ t1 = Task.create(
   description: "Make Rails server",
   status: "inactive",
   project_id: p.id,
-  user_id: u1.id
+  user_id: u4.id
 )
 
 t2 = Task.create(
   description: "Make dashboard screen for ios app",
   status: "started",
   project_id: p.id,
-  user_id: u2.id
+  user_id: u1.id
 )
 
 t3 = Task.create(
   description: "Make project screen for ios app",
   status: "review",
   project_id: p.id,
-  user_id: u3.id
+  user_id: u2.id
 )
 
 t4 = Task.create(

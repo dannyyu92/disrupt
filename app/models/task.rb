@@ -13,8 +13,8 @@ class Task
   # Fields
   token :field_name => :pubid, :pattern => "DT%d4"
   field :status, type: String, default: Task::INACTIVE
-  field :minutes, type: Integer # In minutes
-  field :estimate, type: Integer # In minutes
+  field :minutes, type: Integer, default: 0 # In minutes
+  field :estimate, type: Integer, default: 0 # In minutes
   field :description, type: String
 
   # Relations
