@@ -6,16 +6,31 @@ class TextParser
   end
 
   def do_stuff
-    split_text = parse_args
-    command = split_text.first
+    argv = parse_args
+    command = argv.first.downcase
 
     case command
     when "projects"
       @response = get_projects_response
     when "project"
-      @response = get_project_detail(split_text[1])
+      @response = get_project_detail(argv[1])
+    when "task"
+      task_command = argv[1]
+      case task_command
+      when "update"
+        field = argv[2]
+        case field
+        when 
+
+        else
+          incorrect_command
+        end
+      else
+        incorrect_command
+      end
+
     else
-      @response = incorrect_command
+      incorrect_command
     end
 
     @response
@@ -25,7 +40,7 @@ class TextParser
   private
 
   def parse_args
-    @text.split(/\s/).map(&:downcase)
+    @text.split(/\s/)
   end
 
   def incorrect_command
@@ -42,6 +57,15 @@ class TextParser
 
   def get_project_detail(project_id)
     p = Project.find_by(pubid: project_id)
-    
+    tasks = p.tasks
+
+    mapped_tasks = tasks.pluck(:pubid, :status, :description)
+    tasks.each_with_index do |task, idx|
+      mapped_tasks[idx] << task.user.name
+    end
+
+    mapped_tasks.map! do |x|
+      x.join(" ")
+    end.join("\n")
   end
 end
