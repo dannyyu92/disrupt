@@ -52,7 +52,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
         user = User.find_by(phone_number: phone_num)
         total_tasks = user.tasks.where(project_id: @project.id)
         undone_tasks = user.tasks.where(project_id: @project.id, :status.ne => Task::DONE)
-        hours = user.tasks.where(project_id: @project.id).pluck(:minutes).inject(&:+)
+        minutes = user.tasks.where(project_id: @project.id).pluck(:minutes).inject(&:+)
         estimate = user.tasks.where(project_id: @project.id).pluck(:estimate).inject(&:+)  
 
         @nexmo =  Nexmo::Client.new(key: Rails.application.secrets.nexmo_key, 
@@ -61,7 +61,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
           from: Rails.application.secrets.nexmo_number,
           to: phone_num,
           text: "You have #{undone_tasks.count}/#{total_tasks.count} tasks for #{@project.title}. " \
-          "#{User.hours_string(hours, estimate)}"
+          "#{User.minutes_string(minutes, estimate)}"
         )
       end
 
