@@ -28,14 +28,14 @@ p = Project.create(
 
 t1 = Task.create(
   description: "Make Rails server",
-  status: "not_started",
+  status: "inactive",
   project_id: p.id,
   user_id: u1.id
 )
 
 t2 = Task.create(
   description: "Make dashboard screen for ios app",
-  status: "in_progress",
+  status: "started",
   project_id: p.id,
   user_id: u2.id
 )
@@ -49,7 +49,7 @@ t3 = Task.create(
 
 t4 = Task.create(
  description: "Win hackathon",
- status: "review",
+ status: "done",
  project_id: p.id,
  user_id: u3.id
 )

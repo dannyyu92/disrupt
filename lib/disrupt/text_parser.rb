@@ -41,14 +41,11 @@ class TextParser
       task_command = argv[2]
       if task_command.present?
         case task_command
-          when "update"
-            field = argv[3]
-            new_value = argv[3]
-            task.update_attributes(field.to_sym => new_value)
-            task.
-          else
-            incorrect_command
-          end
+        when "update"
+          field = argv[3]
+          new_value = argv[3]
+          task.update_attributes(field.to_sym => new_value)
+          get_task_detail(task)
         else
           incorrect_command
         end
@@ -58,8 +55,8 @@ class TextParser
     end
   end
 
-  def get_task_detail(task)
-    
+  def get_task_detail(task_id)
+    Task.where(pubid: task_id).pluck(:pubid, :description, :minutes, :estimate).join("\n")
   end
 
   ### Project commands
