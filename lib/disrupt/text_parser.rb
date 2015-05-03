@@ -15,22 +15,7 @@ class TextParser
     when "project"
       @response = get_project_detail(argv[1])
     when "task"
-      task_command = argv[1]
-      case task_command
-      when "update"
-        field = argv[2]
-        case field
-        when 
-
-        else
-          incorrect_command
-        end
-      else
-        incorrect_command
-      end
-
-    else
-      incorrect_command
+      @repsonse = handle_task_commands(argv)
     end
 
     @response
@@ -44,28 +29,60 @@ class TextParser
   end
 
   def incorrect_command
-    "Unknown command. Please select from: [projects]"
+    "Unknown command."
   end
 
+  ##### Task Commands
+  # Parse: "update"
+  def handle_task_commands(argv)
+    task_id = argv[1]
+    task = Task.find_by(pubid: task_id)
+    if task.present?
+      task_command = argv[2]
+      if task_command.present?
+        case task_command
+        when "update"
+          field = argv[3]
+          new_value = argv[3]
+          task.update_attributes(field.to_sym => new_value)
+          get_task_detail(task)
+        else
+          incorrect_command
+        end
+      end
+    else
+      "Task #{task_id} does not exist."
+    end
+  end
+
+  def get_task_detail(task_id)
+    Task.where(pubid: task_id).pluck(:pubid, :description, :minutes, :estimate).join("\n")
+  end
+
+  ### Project commands
   def get_projects_response
     projects = Project.all
     mapped_projects = projects.pluck(:pubid, :title)
     final_project_mapping = mapped_projects.map! do |x|
-      x.join(" ")
+      x.join(" | ")
     end.join("\n")
   end
 
   def get_project_detail(project_id)
     p = Project.find_by(pubid: project_id)
-    tasks = p.tasks
+    if p.present?
+      tasks = p.tasks
 
-    mapped_tasks = tasks.pluck(:pubid, :status, :description)
-    tasks.each_with_index do |task, idx|
-      mapped_tasks[idx] << task.user.name
+      mapped_tasks = tasks.pluck(:pubid, :status, :description)
+      tasks.each_with_index do |task, idx|
+        mapped_tasks[idx] << task.user.name
+      end
+
+      mapped_tasks.map! do |x|
+        x.join(" | ")
+      end.join("\n")
+    else
+      "Project #{project_id} does not exist."
     end
-
-    mapped_tasks.map! do |x|
-      x.join(" ")
-    end.join("\n")
   end
 end
