@@ -15,7 +15,7 @@ class Project
     return nil if tasks.empty?
     done_tasks = tasks.where(status: Task::DONE).count
     total_tasks = tasks.count
-    (done_tasks.to_f / total_tasks.to_f * 100.0).round(2)
+    (done_tasks.to_f / total_tasks.to_f * 100.0).round
   end
 
 end
