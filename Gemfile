@@ -47,5 +47,6 @@ group :development, :test do
 end
 
 # SMS Messaging
-gem 'twilio-ruby'
+#gem 'twilio-ruby'
+gem "nexmo"
 

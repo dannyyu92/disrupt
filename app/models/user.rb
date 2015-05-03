@@ -4,7 +4,7 @@ class User
   include Mongoid::Timestamps
 
   # Fields
-  token :field_name => :pubid, :pattern => "BGU%C3%d5%C3%d4"
+  token :field_name => :pubid, :pattern => "DU%C3%d5%C3%d4"
   field :name, type: String
   field :phone_number, type: String
 

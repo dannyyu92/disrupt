@@ -11,8 +11,8 @@ class Task
   ALL_STATUSES = [NOT_STARTED, IN_PROGRESS, REVIEW, DONE]
 
   # Fields
-  token :field_name => :pubid, :pattern => "BGT%C3%d5%C3%d4"
-  field :status, type: String, default: Task::ACTIVE
+  token :field_name => :pubid, :pattern => "DT%d4"
+  field :status, type: String, default: Task::NOT_STARTED
   field :minutes, type: Integer # In minutes
   field :estimate, type: Integer # In minutes
   field :description, type: String

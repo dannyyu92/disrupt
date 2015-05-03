@@ -4,7 +4,7 @@ class Project
   include Mongoid::Timestamps
 
   # Fields
-  token :field_name => :pubid, :pattern => "BGP%C3%d5%C3%d4"
+  token :field_name => :pubid, :pattern => "DP%d4"
   field :title, type: String
 
   # Relations
