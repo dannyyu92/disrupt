@@ -16,6 +16,24 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
       end
 
       if @project.save
+
+        # Get users
+        all_users = []
+        @project.tasks.each do |task|
+          phone_num = task.user.phone_number
+          all_users << phone_num unless all_users.include? phone_num
+        end
+
+        all_users.each do |phone_num|
+          @nexmo =  Nexmo::Client.new(key: Rails.application.secrets.nexmo_key, 
+                secret: Rails.application.secrets.nexmo_secret)
+          foo = @nexmo.send_message(
+            from: Rails.application.secrets.nexmo_number,
+            to: phone_num,
+            text: "You have new tasks in '@project.title'"
+          )
+        end
+
         return render_api_success("projects/show")
       else
         @error_msg = { msg: "#{@project.errors.full_message.to_sentence}" }
