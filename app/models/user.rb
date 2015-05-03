@@ -11,13 +11,13 @@ class User
   # Relations
   has_many :tasks
 
-  def self.hours_string(hours, estimate)
-    if hours < estimate
-      hours_left = estimate - hours
-      "You have #{hours_left} hours left."
-    elsif hours > estimate
-      hours_over = hours - estimate
-      "You've gone over by #{hours_over}."
+  def self.minutes_string(minutes, estimate)
+    if minutes < estimate
+      minutes_left = estimate - minutes
+      "You have #{minutes_left} minutes left."
+    elsif minutes > estimate
+      minutes_over = minutes - estimate
+      "You've gone over by #{minutes_over}."
     else
       "You are amazing at time tracking."
     end
