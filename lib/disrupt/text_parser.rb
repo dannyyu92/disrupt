@@ -15,7 +15,7 @@ class TextParser
     when "project"
       @response = get_project_detail(argv[1])
     when "task"
-      @repsonse = handle_task_commands(argv)
+      @response = handle_task_commands(argv)
     end
 
     @response
@@ -42,10 +42,11 @@ class TextParser
       if task_command.present?
         case task_command
         when "update"
+          byebug
           field = argv[3]
           new_value = argv[3]
           task.update_attributes(field.to_sym => new_value)
-          get_task_detail(task)
+          get_task_detail(task_id)
         else
           incorrect_command
         end
