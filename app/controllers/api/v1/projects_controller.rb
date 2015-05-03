@@ -30,7 +30,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
           foo = @nexmo.send_message(
             from: Rails.application.secrets.nexmo_number,
             to: phone_num,
-            text: "You have new tasks in '@project.title'"
+            text: "You have new tasks in '#{@project.title}'"
           )
         end
 
