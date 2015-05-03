@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         # Project routes
         get   "projects/:id" => "projects#show"
         post  "projects/create" => "projects#create"
-
+        post  "projects/:id/send_project_status" => "projects#send_project_status"
       end
     end
   end
