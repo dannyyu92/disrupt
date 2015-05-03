@@ -8,4 +8,10 @@ class Api::V1::ApplicationController < ApplicationController
     request.format.json?
   end
 
+  rescue_from(Mongoid::Errors::DocumentNotFound) do |e|
+    # If raise_not_found_error: is not set to 'false' in mongoid.yml
+    @error_msg = { msg: "Resource not found" }
+    render_api_error
+  end
+
 end
