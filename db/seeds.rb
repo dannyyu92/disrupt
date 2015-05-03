@@ -27,7 +27,7 @@ u3 = User.create(
 
 u4 = User.create(
   name: "Danny",
-  phone_number: "16462697113"
+  phone_number: "16462697113",
   pubid: "DUVJT93474GUY2472"
 )
 

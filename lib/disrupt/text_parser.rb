@@ -13,18 +13,15 @@ class TextParser
     when "projects"
       @response = get_projects_response
     when "project"
-      @response = "TASK ID | STATUS | DESCRIPTION | USER\n"
-      @response += "--------------------------------"
-      @response += "--------------------------------\n"
       @response = get_project_detail(argv[1])
     when "tasks"
-
       @response = get_tasks      
     when "task"
-      @response = "TASK ID | STATUS | MIN. LOGGED | MIN. EST. | DESCRIPTION\n"
-      @response += "--------------------------------"
-      @response += "--------------------------------\n"
       @response = handle_task_commands(argv)
+    when "help"
+      @response = help
+    else
+      @response = incorrect_command
     end
 
     @response
@@ -79,8 +76,10 @@ class TextParser
             return "Go home you're drunk."
           end
         else
-          incorrect_command
+          return incorrect_command
         end
+      else
+        return "Usage: task [id] update [status, minutes, estimate, description] [value]"
       end
     else
       return "Task #{task_id} does not exist."
@@ -126,5 +125,15 @@ class TextParser
     else
       "Project #{project_id} does not exist."
     end
+  end
+
+  ### Help
+  def help
+    response = "Available commands:\n"
+    response += "projects\n"
+    response += "project [id]\n"
+    response += "tasks\n"
+    response += "task [id]\n"
+    response += "task [id] update [status, minutes, estimate, description] [value]"
   end
 end
