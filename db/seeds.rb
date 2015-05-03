@@ -27,13 +27,8 @@ u3 = User.create(
 
 u4 = User.create(
   name: "Danny",
-  phone_number: "13472012818",
-  pubid: "DUVJT93474GUY2472"
-)
-
-u4 = User.create(
-  name: "Danny",
   phone_number: "16462697113"
+  pubid: "DUVJT93474GUY2472"
 )
 
 p = Project.create(
