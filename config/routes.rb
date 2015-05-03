@@ -12,8 +12,13 @@ Rails.application.routes.draw do
         # Project routes
         get   "projects/:id" => "projects#show"
         post  "projects/create" => "projects#create"
+
       end
     end
   end
+
+  # Nexmo
+  post  "nexmo/sms" => "nexmo#sms"
+  get   "nexmo/sms" => "nexmo#sms"
 
 end
