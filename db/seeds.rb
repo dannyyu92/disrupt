@@ -9,25 +9,25 @@
 
 u1 = User.create(
   name: "Rich",
-  phone_number: "17329665575",
+  phone_number: "17329665576",
   pubid: "DUDTI75445ECX6555"
 )
 
 u2 = User.create(
   name: "Kevin",
-  phone_number: "12033395298",
+  phone_number: "19146181757",
   pubid: "DUHAL68180LFS6953"
 )
 
 u3 = User.create(
   name: "Al",
-  phone_number: "19146181757",
+  phone_number: "12033395298",
   pubid: "DUVJT93474LOT2472"
 )
 
 u4 = User.create(
   name: "Danny",
-  phone_number: "16462697113"
+  phone_number: "16462697113",
   pubid: "DUVJT93474GUY2472"
 )
 
