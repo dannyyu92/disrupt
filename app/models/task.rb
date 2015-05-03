@@ -4,11 +4,11 @@ class Task
   include Mongoid::Timestamps
 
   # Statuses
-  NOT_STARTED = "not_started"
-  IN_PROGRESS = "in_progress"
+  INACTIVE = "inactive"
+  STARTED = "started"
   REVIEW = "review"
   DONE = "done"
-  ALL_STATUSES = [NOT_STARTED, IN_PROGRESS, REVIEW, DONE]
+  ALL_STATUSES = [INACTIVE, STARTED, REVIEW, DONE]
 
   # Fields
   token :field_name => :pubid, :pattern => "DT%d4"

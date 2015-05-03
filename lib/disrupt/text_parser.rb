@@ -16,21 +16,25 @@ class TextParser
       @response = get_project_detail(argv[1])
     when "task"
       task_command = argv[1]
-      case task_command
-      when "update"
-        field = argv[2]
-        case field
-        when 
 
+      if task_command.present?
+      case task_command
+        when "update"
+          field = argv[2]
+          case field
+
+          when 
+            incorrect_command
+          else
+            incorrect_command
+          end
         else
           incorrect_command
         end
+
       else
         incorrect_command
       end
-
-    else
-      incorrect_command
     end
 
     @response
@@ -51,7 +55,7 @@ class TextParser
     projects = Project.all
     mapped_projects = projects.pluck(:pubid, :title)
     final_project_mapping = mapped_projects.map! do |x|
-      x.join(" ")
+      x.join(" | ")
     end.join("\n")
   end
 
@@ -65,7 +69,7 @@ class TextParser
     end
 
     mapped_tasks.map! do |x|
-      x.join(" ")
+      x.join(" | ")
     end.join("\n")
   end
 end
